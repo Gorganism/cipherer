@@ -15,14 +15,20 @@ alphabet = ['a', 'b', 'c', 'd', 'e',
             'z']
 
 # temporary key for testing
-testkey = ['c', 'l', 't', 'h', 'a',
-           'n', 'v', 'w', 'z', 'y',
-           's', 'k', 'r', 'p', 'm',
-           'o', 'd', 'i', 'x', 'f',
-           'b', 'j', 'e', 'g', 'u',
-           'q']
+testkey = [('a','C'), ('b','L'), ('c','T'), ('H'), ('A'), # TODO finish this with alphabet
+           ('N'), ('V'), ('W'), ('Z'), ('Y'),
+           ('S'), ('K'), ('R'), ('P'), ('M'),
+           ('O'), ('D'), ('I'), ('X'), ('F'),
+           ('B'), ('J'), ('E'), ('G'), ('U'),
+           ('Q')]
+
+def encode():
+    for (i,j)
+
 
 # TODO - finish backend and allat
+
+# --- FRONTEND ---
 
 # class Interface(QWidget):
 #     def __init__(self):
