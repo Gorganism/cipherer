@@ -26,6 +26,26 @@ def encode():
     for (i,j)
 
 
+def decrypt(alph,key,encrypted):
+    encrypted=list(encrypted)
+    for i in range(len(encrypted)):
+        p=-1
+        epic="hi"
+        while epic != encrypted[i]:
+            p+=1
+            epic=key[p][1]
+            print(epic)
+            if encrypted[i]==" ":
+                result.append(" ")
+                break
+        if encrypted[i]==" ":
+            print("added space to the list")
+        else:
+            result.append(key[p][0])
+        print(result)
+    print("".join(result))
+
+            
 # TODO - finish backend and allat
 
 # --- FRONTEND ---
