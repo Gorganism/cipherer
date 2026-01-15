@@ -26,7 +26,7 @@ def encode():
     for (i,j)
 
 
-def decrypt(alph,key,encrypted):
+def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic because that does not make sence
     encrypted=list(encrypted)
     for i in range(len(encrypted)):
         p=-1
