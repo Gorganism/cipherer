@@ -15,8 +15,6 @@ testkey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
            ('u','B'), ('v','J'), ('w','E'), ('x','G'), ('y','U'),
            ('z','Q')]
 
-patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
-
 
 def spacer(h, p): # adds a space at a location in a string. this exists solely for legibility.
     return h[:p] + " " + h[p:]
@@ -53,10 +51,26 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
     print("".join(result))
     return ("".join(result))
 
+
+# gorg's version of the decoder tool:
+#
+# def decode(key, entry, patristocrat):
+#     result = entry
+#     for (i,j) in key:
+#        result = result.replace(j.lower(),i.upper())
+#     result = result.lower()
+#     if patristocrat:
+#         result = result.replace(" ","")
+#     return result
+
             
 # --- TESTING ---
 
-print(encode(testkey,input("Phrase to encode: "),1))
+patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
+
+print(encode(testkey,input("Phrase to encode: "),patr_toggle)) # encoder call
+
+# print(decode(testkey,input("Phrase to decode: "),patr_toggle)) # gorg decoder call
 
 # alphabet = set('abcdefghijklmnopqrstuvwxyz')
 # userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
