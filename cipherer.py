@@ -25,7 +25,7 @@ testkey = [('a','c'), ('b','l'), ('c','t'), ('d','h'), ('e','a'),
 patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
 
 
-def spacer(h, p):
+def spacer(h, p): # adds a space at a location in a string. this exists solely for legibility.
     return h[:p] + " " + h[p:]
 
 def encode(key, entry, patristocrat):
@@ -36,7 +36,9 @@ def encode(key, entry, patristocrat):
     if patristocrat:
         result = result.replace(" ","")
         for y in range(5, len(result)+6, 6):
-            output = spacer(result,y)
+            result = spacer(result,y)
+    return result
+
 
 def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic because that does not make sense
     encrypted=list(encrypted)
