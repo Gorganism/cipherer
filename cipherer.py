@@ -4,18 +4,12 @@ import random as rand
 # )
 # from PySide6.QtGui import QTextCursor
 # from PySide6.QtCore import Qt, QEvent, QObject
-alphabet = ['a', 'b', 'c', 'd', 'e',
-            'f', 'g', 'h', 'i', 'j',
-            'k', 'l', 'm', 'n', 'o',
-            'p', 'q', 'r', 's', 't',
-            'u', 'v', 'w', 'x', 'y',
-            'z']
-# --- User input ---
-key = input("Please input your key ")
-key = list(key)
-while len(key) != 26 and not alphabet.issubset(other)::
-            key = input("The key was the wrong length or it was missing characters please input a new key")
 
+# --- User input ---
+alphabet = set('abcdefghijklmnopqrstuvwxyz')
+key = input("Please input your key: ")
+while not (len(key) == 26 and alphabet.issubset(key)):
+    key = input("The key was the wrong length or it was missing characters please input a new key: ")
 # --- BACKEND STUFFS ---
 
 # temporary key for testing
