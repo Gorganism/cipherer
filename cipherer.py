@@ -5,13 +5,6 @@ import random as rand
 # from PySide6.QtGui import QTextCursor
 # from PySide6.QtCore import Qt, QEvent, QObject
 
-# --- TESTING ---
-
-alphabet = set('abcdefghijklmnopqrstuvwxyz')
-userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
-while not (len(userkey) == 26 and alphabet.issubset(key)):
-    userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
-
 # --- BACKEND STUFFS ---
 
 # temporary key for testing
@@ -61,6 +54,13 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
     return ("".join(result))
 
             
+# --- TESTING ---
+
+alphabet = set('abcdefghijklmnopqrstuvwxyz')
+userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
+while not (len(userkey) == 26 and alphabet.issubset(key)):
+    userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
+
 # TODO - finish backend and allat
 
 # --- FRONTEND ---
