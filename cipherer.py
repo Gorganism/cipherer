@@ -48,6 +48,7 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
             result.append(key[p][0])
         print(result)
     print("".join(result))
+    return ("".join(result))
 
             
 # TODO - finish backend and allat
