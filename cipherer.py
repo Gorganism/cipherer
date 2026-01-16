@@ -22,7 +22,7 @@ testkey = [('a','c'), ('b','l'), ('c','t'), ('d','h'), ('e','a'),
            ('u','b'), ('v','j'), ('w','e'), ('x','g'), ('y','u'),
            ('z','q')]
 
-patristocrat = 0 # change to a toggle in the GUI later
+patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
 
 
 def spacer(h, p):
