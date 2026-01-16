@@ -14,7 +14,7 @@ alphabet = ['a', 'b', 'c', 'd', 'e',
 key = input("Please input your key ")
 key = list(key)
 while len(key) != 26 and not alphabet.issubset(other)::
-            key = input("The key was the wrong length please input a new key")
+            key = input("The key was the wrong length or it was missing characters please input a new key")
 
 # --- BACKEND STUFFS ---
 
