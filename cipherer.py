@@ -56,7 +56,7 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
             
 # --- TESTING ---
 
-print(encode(testkey,input("Phrase to encode: "),0))
+print(encode(testkey,input("Phrase to encode: "),1))
 
 # alphabet = set('abcdefghijklmnopqrstuvwxyz')
 # userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
