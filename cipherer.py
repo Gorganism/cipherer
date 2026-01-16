@@ -7,13 +7,13 @@ import random as rand
 
 # --- BACKEND STUFFS ---
 
-# temporary key for testing
-testkey = [('a','c'), ('b','l'), ('c','t'), ('d','h'), ('e','a'),
-           ('f','n'), ('g','v'), ('h','w'), ('i','z'), ('j','y'),
-           ('k','s'), ('l','k'), ('m','r'), ('n','p'), ('o','m'),
-           ('p','o'), ('q','d'), ('r','i'), ('s','x'), ('t','f'),
-           ('u','b'), ('v','j'), ('w','e'), ('x','g'), ('y','u'),
-           ('z','q')]
+# temporary key for testing. it's SUPPOSED to be uppercase. do not edit!
+testkey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
+           ('f','N'), ('g','V'), ('h','W'), ('i','Z'), ('j','Y'),
+           ('k','S'), ('l','K'), ('m','R'), ('n','P'), ('o','M'),
+           ('p','O'), ('q','D'), ('r','I'), ('s','X'), ('t','F'),
+           ('u','B'), ('v','J'), ('w','E'), ('x','G'), ('y','U'),
+           ('z','Q')]
 
 patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
 
@@ -23,7 +23,7 @@ def spacer(h, p): # adds a space at a location in a string. this exists solely f
 
 def encode(key, entry, patristocrat):
     result = entry
-    for (i,j) in result:
+    for (i,j) in key:
        result = result.replace(i,j)
     result = result.lower()
     if patristocrat:
@@ -56,10 +56,12 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
             
 # --- TESTING ---
 
-alphabet = set('abcdefghijklmnopqrstuvwxyz')
-userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
-while not (len(userkey) == 26 and alphabet.issubset(key)):
-    userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
+print(encode(testkey,input("Phrase to encode: "),0))
+
+# alphabet = set('abcdefghijklmnopqrstuvwxyz')
+# userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
+# while not (len(userkey) == 26 and alphabet.issubset(key)):
+#     userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
 
 # TODO - finish backend and allat
 
