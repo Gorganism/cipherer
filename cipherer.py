@@ -8,7 +8,7 @@ import random as rand
 # --- TESTING ---
 
 alphabet = set('abcdefghijklmnopqrstuvwxyz')
-userkey = input("Please input your key: ")
+userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
 while not (len(userkey) == 26 and alphabet.issubset(key)):
     userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
 
@@ -22,13 +22,21 @@ testkey = [('a','c'), ('b','l'), ('c','t'), ('d','h'), ('e','a'),
            ('u','b'), ('v','j'), ('w','e'), ('x','g'), ('y','u'),
            ('z','q')]
 
-def encode(key, entry):
+patristocrat = 0 # change to a toggle in the GUI later
+
+
+def spacer(h, p):
+    return h[:p] + " " + h[p:]
+
+def encode(key, entry, patristocrat):
     result = entry
     for (i,j) in result:
        result = result.replace(i,j)
-    
     result = result.lower()
-    # TODO finish this
+    if patristocrat:
+        result = result.replace(" ","")
+        for y in range(5, len(result)+6, 6):
+            output = spacer(result,y)
 
 def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic because that does not make sense
     encrypted=list(encrypted)
