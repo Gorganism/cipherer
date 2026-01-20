@@ -1,9 +1,10 @@
 import random as rand
-# from PySide6.QtWidgets import (
-#     QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton
-# )
-# from PySide6.QtGui import QTextCursor
-# from PySide6.QtCore import Qt, QEvent, QObject
+from PySide6.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton
+)
+from PySide6.QtGui import QTextCursor
+from PySide6.QtCore import Qt, QEvent, QObject
+import sys
 
 # --- BACKEND STUFFS ---
 
@@ -53,7 +54,7 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
 
 
 # gorg's version of the decoder tool:
-#
+
 # def decode(key, entry, patristocrat):
 #     result = entry
 #     for (i,j) in key:
@@ -68,7 +69,7 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
 
 patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
 
-print(encode(testkey,input("Phrase to encode: "),patr_toggle)) # encoder call
+# print(encode(testkey,input("Phrase to encode: "),patr_toggle)) # encoder call
 
 # print(decode(testkey,input("Phrase to decode: "),patr_toggle)) # gorg decoder call
 
@@ -79,9 +80,23 @@ print(encode(testkey,input("Phrase to encode: "),patr_toggle)) # encoder call
 
 # TODO - finish backend and allat
 
-# --- FRONTEND ---
+# --- FRONTEND / UI ---
 
-# class Interface(QWidget):
-#     def __init__(self):
-#         super().__init__()
-#         # TODO - stuff here for UI
+class Cipherer(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Cipherer")
+        self.rounded_box_style = """
+            background-color: #1e1e2e;
+            color: #fff;
+            border-radius: 0.5em;
+            padding: 0.5em;
+        """
+        # TODO - stuff here for UI
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = Cipherer()
+    window.resize(800, 600)
+    window.show()
+    sys.exit(app.exec())
