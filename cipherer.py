@@ -137,15 +137,20 @@ class Cipherer(QWidget):
         self.outputbox.setReadOnly(True)
         self.layout.addWidget(self.outputbox)
 
+        # TODO - stuff here for UI
 
     def encoderInterface(self):
         global testkey # temporary
 
         textentry = self.entrybox.toPlainText.strip()
         encodedtext = encode(testkey,textentry,1)
-        
 
-        # TODO - stuff here for UI
+        # TODO - finish this interface
+        # ...
+        # interface purpose is to use the encode function
+        # from the backend section to show its output in
+        # the output box in the UI.
+        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
