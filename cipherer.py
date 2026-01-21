@@ -137,24 +137,28 @@ class Cipherer(QWidget):
         self.outputbox.setReadOnly(True)
         self.layout.addWidget(self.outputbox)
 
-        # TODO - stuff here for UI
+        # TODO - patristocrat toggle (like a checkbox or something,
+        # changes the `patristocrat` variable to be 1 or 0)
+
+        # TODO - input a custom key to use, instead of testkey.
+        # should also decline all keys that don't contain 1 of
+        # each letter of the alphabet.
+
 
     def encoderInterface(self):
         global testkey # temporary
 
-        textentry = self.entrybox.toPlainText.strip()
+        textentry = self.entrybox.toPlainText().strip()
         encodedtext = encode(testkey,textentry,1)
 
-        # TODO - finish this interface
-        # ...
-        # interface purpose is to use the encode function
-        # from the backend section to show its output in
-        # the output box in the UI.
-        
+        self.outputbox.setPlainText(encodedtext)
+
+    # TODO - enter key should be a shortcut for the button
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Cipherer()
-    window.resize(800, 600)
+    window.resize(500, 600)
     window.show()
     sys.exit(app.exec())
