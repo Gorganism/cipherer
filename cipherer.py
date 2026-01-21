@@ -52,6 +52,8 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
     print("".join(result))
     return ("".join(result))
 
+# TODO - finish backend and allat
+
 
 # gorg's version of the decoder tool:
 
@@ -64,7 +66,7 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
 #         result = result.replace(" ","")
 #     return result
 
-            
+
 # --- TESTING ---
 
 patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
@@ -78,8 +80,6 @@ patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
 # while not (len(userkey) == 26 and alphabet.issubset(key)):
 #     userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
 
-# TODO - finish backend and allat
-
 # --- FRONTEND / UI ---
 
 class Cipherer(QWidget):
@@ -87,11 +87,64 @@ class Cipherer(QWidget):
         super().__init__()
         self.setWindowTitle("Cipherer")
         self.rounded_box_style = """
-            background-color: #1e1e2e;
-            color: #fff;
+            background-color: #181825;
+            color: #a6adc8;
+            font-size: 15pt;
             border-radius: 0.5em;
             padding: 0.5em;
         """
+        self.button_style = """
+            background-color: #f2cdcd;
+            color: #1e1e2e;
+            font-weight: bold;
+            font-size: 15pt;
+            border-radius: 0.5em;
+            padding: 0.5em;
+        """
+        self.textbox_headers = """
+            font-weight: bold;
+            font-size: 20pt;
+        """
+        
+        # layout
+        self.layout = QVBoxLayout(self)
+
+        # entry box header
+        self.entryheader = QLabel("Plaintext (letter case not preserved)")
+        self.entryheader.setStyleSheet(self.textbox_headers)
+        self.layout.addWidget(self.entryheader)
+
+        # text entry box
+        self.entrybox = QTextEdit()
+        self.entrybox.setStyleSheet(self.rounded_box_style)
+        self.entrybox.installEventFilter(self)
+        self.layout.addWidget(self.entrybox)
+
+        # button
+        self.button = QPushButton("Encode!")
+        self.button.clicked.connect(self.encoderInterface) # worried about this
+        self.button.setStyleSheet(self.button_style)
+        self.layout.addWidget(self.button)
+
+        # output box header
+        self.outputheader = QLabel("Output")
+        self.outputheader.setStyleSheet(self.textbox_headers)
+        self.layout.addWidget(self.outputheader)
+
+        # output box
+        self.outputbox = QTextEdit()
+        self.outputbox.setStyleSheet(self.rounded_box_style)
+        self.outputbox.setReadOnly(True)
+        self.layout.addWidget(self.outputbox)
+
+
+    def encoderInterface(self):
+        global testkey # temporary
+
+        textentry = self.entrybox.toPlainText.strip()
+        encodedtext = encode(testkey,textentry,1)
+        
+
         # TODO - stuff here for UI
 
 if __name__ == "__main__":
