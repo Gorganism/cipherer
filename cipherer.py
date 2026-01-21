@@ -153,7 +153,20 @@ class Cipherer(QWidget):
 
         self.outputbox.setPlainText(encodedtext)
 
-    # TODO - enter key should be a shortcut for the button
+    # shortcut to press enter to submit
+    
+    def eventFilter(self, obj, event):
+        if obj is self.entrybox and event.type() == QEvent.Type.KeyPress:
+            key = event.key()
+            modifiers = event.modifiers()
+            if key == Qt.Key.Key_Return:
+                if modifiers & Qt.ShiftModifier:
+                    return super().eventFilter(obj, event)
+                elif self.entrybox.hasFocus():
+                    self.encoderInterface()
+                    return True
+            return super().eventFilter(obj, event)
+        return super().eventFilter(obj, event)
 
 
 if __name__ == "__main__":
