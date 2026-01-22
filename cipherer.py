@@ -1,6 +1,6 @@
 import random as rand
 from PySide6.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton
+    QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton, QCheckBox
 )
 from PySide6.QtGui import QTextCursor
 from PySide6.QtCore import Qt, QEvent, QObject
@@ -114,6 +114,18 @@ class Cipherer(QWidget):
         self.entryheader.setStyleSheet(self.textbox_headers)
         self.layout.addWidget(self.entryheader)
 
+        # patristocrat note
+        # self.patnote = QLabel("patristocrat mode:")
+        # self.patnote.setStyleSheet("""
+        #     font-weight: bold;
+        #     font-size: 10pt;
+        # """)
+        # self.layout.addWidget(self.patnote)
+
+        # patristocrat checkbox
+        self.patcheck = QCheckBox("patristocrat mode")
+        self.layout.addWidget(self.patcheck)
+
         # text entry box
         self.entrybox = QTextEdit()
         self.entrybox.setStyleSheet(self.rounded_box_style)
@@ -134,7 +146,7 @@ class Cipherer(QWidget):
         # output box
         self.outputbox = QTextEdit()
         self.outputbox.setStyleSheet(self.rounded_box_style)
-        self.outputbox.setReadOnly(True)
+        self.outputbox.setReadOnly(1)
         self.layout.addWidget(self.outputbox)
 
         # TODO - patristocrat toggle (like a checkbox or something,
@@ -149,7 +161,7 @@ class Cipherer(QWidget):
         global testkey # temporary
 
         textentry = self.entrybox.toPlainText().strip()
-        encodedtext = encode(testkey,textentry,1)
+        encodedtext = encode(testkey,textentry,self.patcheck.isChecked())
 
         self.outputbox.setPlainText(encodedtext)
 
@@ -164,7 +176,7 @@ class Cipherer(QWidget):
                     return super().eventFilter(obj, event)
                 elif self.entrybox.hasFocus():
                     self.encoderInterface()
-                    return True
+                    return 1
             return super().eventFilter(obj, event)
         return super().eventFilter(obj, event)
 
@@ -172,6 +184,10 @@ class Cipherer(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Cipherer()
+    window.setStyleSheet("""
+        color: #cdd6f4;
+        background-color: #1e1e2e;
+    """)
     window.resize(500, 600)
     window.show()
     sys.exit(app.exec())
