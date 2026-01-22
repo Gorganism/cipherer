@@ -27,9 +27,10 @@ def encode(key, entry, patristocrat):
     result = result.lower()
     if patristocrat:
         result = result.replace(" ","")
-        for y in range(5, len(result)+6, 6):
+        # for y in range(5, len(result)+6, 6):
+        for y in range(5, len(result)*2, 6):
             result = spacer(result,y)
-    return result
+    return result.strip()
 
 
 def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic because that does not make sense
