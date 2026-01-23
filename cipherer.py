@@ -225,3 +225,8 @@ if __name__ == "__main__":
     window = Cipherer()
     window.setStyleSheet("""
         color: #cdd6f4;
+        background-color: #1e1e2e;
+    """)
+    window.resize(500, 600)
+    window.show()
+    sys.exit(app.exec())
