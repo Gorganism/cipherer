@@ -130,12 +130,13 @@ class Cipherer(QWidget):
         self.entrybox.setStyleSheet(self.rounded_box_style)
         self.entrybox.installEventFilter(self)
         self.layout.addWidget(self.entrybox)
-
-        # button
+        
+        # button encode
         self.button = QPushButton("Encode!")
         self.button.clicked.connect(self.encoderInterface) # worried about this
         self.button.setStyleSheet(self.button_style)
         self.layout.addWidget(self.button)
+        self.button.clicked.connect(self.decryptInterface)
 
         # output box header
         self.outputheader = QLabel("Output")
@@ -147,12 +148,14 @@ class Cipherer(QWidget):
         self.outputbox.setStyleSheet(self.rounded_box_style)
         self.outputbox.setReadOnly(1)
         self.layout.addWidget(self.outputbox)
+        
         '''
         # center toggle
         self.centercheck = QCheckBox("CenterStuff")
         self.layout.addWidget(self.centercheck)
         self.centercheck.toggled.connect(self.on_centercheck_toggled)
         '''
+        
         # decryption toggle thing
         self.decrypt = QCheckBox("Toggle between decrypt and encrypt")
         self.layout.addWidget(self.decrypt)
