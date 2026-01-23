@@ -151,9 +151,9 @@ class Cipherer(QWidget):
         self.layout.addWidget(self.outputbox)
 
         # center toggle
-#        self.centercheck = QCheckBox("CenterStuff")
-#        self.layout.addWidget(self.centercheck)
-#        self.centercheck.toggled.connect(self.on_centercheck_toggled)
+        #self.centercheck = QCheckBox("CenterStuff")
+        #self.layout.addWidget(self.centercheck)
+        #self.centercheck.toggled.connect(self.on_centercheck_toggled)
 
         # decryption toggle thing
         self.decrypt = QCheckBox("Toggle between decrypt and encrypt")
@@ -183,14 +183,14 @@ class Cipherer(QWidget):
         else:
             self.button.setText("Decrypt!")
 
-#    def on_centercheck_toggled(self, checked):
-#        if checked:
-#            self.entryheader.setAlignment(Qt.AlignCenter)
-#            self.outputheader.setAlignment(Qt.AlignCenter)
-#            print("stuff centered")
-#        else:
-#            self.entryheader.setAlignment(Qt.AlignLeft)
-#            self.outputheader.setAlignment(Qt.AlignLeft)
+     #def on_centercheck_toggled(self, checked):
+     #    if checked:
+     #       self.entryheader.setAlignment(Qt.AlignCenter)
+     #       self.outputheader.setAlignment(Qt.AlignCenter)
+     #       print("stuff centered")
+     #    else:
+     #        self.entryheader.setAlignment(Qt.AlignLeft)
+     #        self.outputheader.setAlignment(Qt.AlignLeft)
 
     def encoderInterface(self):
         global testkey # temporary
