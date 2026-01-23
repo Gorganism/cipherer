@@ -32,7 +32,9 @@ def encode(key, entry, patristocrat):
     return result.strip()
 
 
-def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic because that does not make sense
+def decrypt(key,encrypted): # TODO change name of epic variable
+    result=[]
+    encrypted=encrypted.upper()
     encrypted=list(encrypted)
     for i in range(len(encrypted)):
         p=-1
@@ -40,7 +42,6 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
         while epic != encrypted[i]:
             p+=1
             epic=key[p][1]
-            print(epic)
             if encrypted[i]==" ":
                 result.append(" ")
                 break
@@ -48,9 +49,7 @@ def decrypt(alph,key,encrypted): # TODO change a couple variable names like epic
             print("added space to the list")
         else:
             result.append(key[p][0])
-        print(result)
-    print("".join(result))
-    return ("".join(result))
+    return("".join(result))
 
 # TODO - finish backend and allat
 
@@ -148,6 +147,17 @@ class Cipherer(QWidget):
         self.outputbox.setStyleSheet(self.rounded_box_style)
         self.outputbox.setReadOnly(1)
         self.layout.addWidget(self.outputbox)
+        '''
+        # center toggle
+        self.centercheck = QCheckBox("CenterStuff")
+        self.layout.addWidget(self.centercheck)
+        self.centercheck.toggled.connect(self.on_centercheck_toggled)
+        '''
+        # decryption toggle thing
+        self.decrypt = QCheckBox("Toggle between decrypt and encrypt")
+        self.layout.addWidget(self.decrypt)
+        self.decrypt.toggled.connect(self.buttonchange)
+
 
         # TODO - patristocrat toggle (like a checkbox or something,
         # changes the `patristocrat` variable to be 1 or 0)
@@ -157,13 +167,40 @@ class Cipherer(QWidget):
         # each letter of the alphabet.
 
 
-    def encoderInterface(self):
+    def decryptInterface(self, checked):
+        if self.decrypt.isChecked():
+            textentry = self.entrybox.toPlainText().strip()
+            decrypttext = decrypt(testkey, textentry)
+            self.outputbox.setPlainText(decrypttext)
+            print(textentry)
+
+     # used for changing the text of the button 
+    def buttonchange(self):
+        if self.decrypt.isChecked():
+            self.button.setText("Encrypt!")
+        else:
+            self.button.setText("Decrypt!")
+
+    '''
+    def on_centercheck_toggled(self, checked):
+        if checked:
+            self.entryheader.setAlignment(Qt.AlignCenter)
+            self.outputheader.setAlignment(Qt.AlignCenter)
+            print("stuff centered")
+        else:
+            self.entryheader.setAlignment(Qt.AlignLeft)
+            self.outputheader.setAlignment(Qt.AlignLeft)
+    '''
+
+    def encoderInterface(self, checked):
         global testkey # temporary
 
-        textentry = self.entrybox.toPlainText().strip()
-        encodedtext = encode(testkey,textentry,self.patcheck.isChecked())
+        if not self.decrypt.isChecked():
+            textentry = self.entrybox.toPlainText().strip()
+            encodedtext = encode(testkey,textentry, self.patcheck.isChecked())
 
-        self.outputbox.setPlainText(encodedtext)
+            self.outputbox.setPlainText(encodedtext)
+
 
     # shortcut to press enter to submit
     
