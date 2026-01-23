@@ -170,7 +170,7 @@ class Cipherer(QWidget):
         # each letter of the alphabet.
 
 
-    def decryptInterface(self, checked):
+    def decryptInterface(self):
         if self.decrypt.isChecked():
             textentry = self.entrybox.toPlainText().strip()
             decrypttext = decrypt(testkey, textentry)
@@ -195,7 +195,7 @@ class Cipherer(QWidget):
             self.outputheader.setAlignment(Qt.AlignLeft)
     '''
 
-    def encoderInterface(self, checked):
+    def encoderInterface(self):
         global testkey # temporary
 
         if not self.decrypt.isChecked():
@@ -215,6 +215,7 @@ class Cipherer(QWidget):
                     return super().eventFilter(obj, event)
                 elif self.entrybox.hasFocus():
                     self.encoderInterface()
+                    self.decryptInterface()
                     return 1
             return super().eventFilter(obj, event)
         return super().eventFilter(obj, event)
