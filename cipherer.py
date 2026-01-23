@@ -21,13 +21,12 @@ def spacer(h, p): # adds a space at a location in a string. this exists solely f
     return h[:p] + " " + h[p:]
 
 def encode(key, entry, patristocrat):
-    result = entry
+    result = entry.lower()
     for (i,j) in key:
        result = result.replace(i,j)
     result = result.lower()
     if patristocrat:
         result = result.replace(" ","")
-        # for y in range(5, len(result)+6, 6):
         for y in range(5, len(result)*2, 6):
             result = spacer(result,y)
     return result.strip()
