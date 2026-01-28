@@ -155,14 +155,11 @@ class Cipherer(QWidget):
         #self.layout.addWidget(self.centercheck)
         #self.centercheck.toggled.connect(self.on_centercheck_toggled)
 
-        # decryption toggle thing
-        self.decrypt = QCheckBox("Toggle between decrypt and encrypt")
-        self.layout.addWidget(self.decrypt)
-        self.decrypt.toggled.connect(self.buttonchange)
+        # decryption toggle
+        self.decryptcheck = QCheckBox("decrypt")
+        self.layout.addWidget(self.decryptcheck)
+        self.decryptcheck.toggled.connect(self.buttonchange)
 
-
-        # TODO - patristocrat toggle (like a checkbox or something,
-        # changes the `patristocrat` variable to be 1 or 0)
 
         # TODO - input a custom key to use, instead of testkey.
         # should also decline all keys that don't contain 1 of
@@ -170,32 +167,32 @@ class Cipherer(QWidget):
 
 
     def decryptInterface(self):
-        if self.decrypt.isChecked():
+        if self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
             decrypttext = decrypt(testkey, textentry)
             self.outputbox.setPlainText(decrypttext)
-            print(textentry)
+            # print(textentry) # again, no prints in main.
 
-     # used for changing the text of the button 
+    # used for changing the text of the button 
     def buttonchange(self):
-        if self.decrypt.isChecked():
+        if not self.decryptcheck.isChecked():
             self.button.setText("Encrypt!")
         else:
             self.button.setText("Decrypt!")
 
-     #def on_centercheck_toggled(self, checked):
-     #    if checked:
-     #       self.entryheader.setAlignment(Qt.AlignCenter)
-     #       self.outputheader.setAlignment(Qt.AlignCenter)
-     #       print("stuff centered")
-     #    else:
-     #        self.entryheader.setAlignment(Qt.AlignLeft)
-     #        self.outputheader.setAlignment(Qt.AlignLeft)
+     # def on_centercheck_toggled(self, checked):
+     #     if checked:
+     #        self.entryheader.setAlignment(Qt.AlignCenter)
+     #        self.outputheader.setAlignment(Qt.AlignCenter)
+     #        print("stuff centered")
+     #     else:
+     #         self.entryheader.setAlignment(Qt.AlignLeft)
+     #         self.outputheader.setAlignment(Qt.AlignLeft)
 
     def encoderInterface(self):
         global testkey # temporary
 
-        if not self.decrypt.isChecked():
+        if not self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
             encodedtext = encode(testkey,textentry, self.patcheck.isChecked())
 
@@ -211,8 +208,10 @@ class Cipherer(QWidget):
                 if modifiers & Qt.ShiftModifier:
                     return super().eventFilter(obj, event)
                 elif self.entrybox.hasFocus():
-                    self.encoderInterface()
-                    self.decryptInterface()
+                    if self.decryptcheck.isChecked():
+                        self.decryptInterface()
+                    else:
+                        self.encoderInterface()
                     return 1
             return super().eventFilter(obj, event)
         return super().eventFilter(obj, event)
