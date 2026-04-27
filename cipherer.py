@@ -21,13 +21,13 @@ def spacer(h, p): # adds a space at a location in a string. this exists solely f
     return h[:p] + " " + h[p:]
 
 def encode(key, entry, patristocrat):
-    result = entry
+    result = entry.lower()
     for (i,j) in key:
        result = result.replace(i,j)
     result = result.lower()
     if patristocrat:
         result = result.replace(" ","")
-        # for y in range(5, len(result)+6, 6):
+        #for y in range(5, len(result)+6, 6):
         for y in range(5, len(result)*2, 6):
             result = spacer(result,y)
     return result.strip()
@@ -46,8 +46,8 @@ def decrypt(key,encrypted): # TODO change name of epic variable
             if encrypted[i]==" ":
                 result.append(" ")
                 break
-        if encrypted[i]==" ":
-            print("added space to the list")
+        #if encrypted[i]==" ":
+        #    print("added space to the list")
         else:
             result.append(key[p][0])
     return("".join(result))
@@ -57,28 +57,28 @@ def decrypt(key,encrypted): # TODO change name of epic variable
 
 # gorg's version of the decoder tool:
 
-# def decode(key, entry, patristocrat):
-#     result = entry
-#     for (i,j) in key:
-#        result = result.replace(j.lower(),i.upper())
-#     result = result.lower()
-#     if patristocrat:
-#         result = result.replace(" ","")
-#     return result
+#def decode(key, entry, patristocrat):
+#    result = entry
+#    for (i,j) in key:
+#       result = result.replace(j.lower(),i.upper())
+#    result = result.lower()
+#    if patristocrat:
+#        result = result.replace(" ","")
+#    return result
 
 
 # --- TESTING ---
 
-patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
+#patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
 
-# print(encode(testkey,input("Phrase to encode: "),patr_toggle)) # encoder call
+#print(encode(testkey,input("Phrase to encode: "),patr_toggle)) # encoder call
 
-# print(decode(testkey,input("Phrase to decode: "),patr_toggle)) # gorg decoder call
+#print(decode(testkey,input("Phrase to decode: "),patr_toggle)) # gorg decoder call
 
-# alphabet = set('abcdefghijklmnopqrstuvwxyz')
-# userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
-# while not (len(userkey) == 26 and alphabet.issubset(key)):
-#     userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
+#alphabet = set('abcdefghijklmnopqrstuvwxyz')
+#userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
+#while not (len(userkey) == 26 and alphabet.issubset(key)):
+#    userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
 
 # --- FRONTEND / UI ---
 
@@ -93,6 +93,14 @@ class Cipherer(QWidget):
             border-radius: 0.5em;
             padding: 0.5em;
         """
+        self.short_box_style = """
+            background-color: #181825;
+            color: #a6adc8;
+            font-size: 15pt;
+            border-radius: 0.5em;
+            max-height: 20px;
+            padding: 0.5em;
+        """
         self.button_style = """
             background-color: #f2cdcd;
             color: #1e1e2e;
@@ -105,6 +113,9 @@ class Cipherer(QWidget):
             font-weight: bold;
             font-size: 20pt;
         """
+        self.textbox_subheaders = """
+            font-size: 17pt;
+        """
         
         # layout
         self.layout = QVBoxLayout(self)
@@ -115,12 +126,12 @@ class Cipherer(QWidget):
         self.layout.addWidget(self.entryheader)
 
         # patristocrat note
-        # self.patnote = QLabel("patristocrat mode:")
-        # self.patnote.setStyleSheet("""
-        #     font-weight: bold;
-        #     font-size: 10pt;
-        # """)
-        # self.layout.addWidget(self.patnote)
+        #self.patnote = QLabel("patristocrat mode:")
+        #self.patnote.setStyleSheet("""
+        #    font-weight: bold;
+        #    font-size: 10pt;
+        #""")
+        #self.layout.addWidget(self.patnote)
 
         # patristocrat checkbox
         self.patcheck = QCheckBox("patristocrat mode")
@@ -160,10 +171,20 @@ class Cipherer(QWidget):
         self.layout.addWidget(self.decryptcheck)
         self.decryptcheck.toggled.connect(self.buttonchange)
 
-
         # TODO - input a custom key to use, instead of testkey.
-        # should also decline all keys that don't contain 1 of
-        # each letter of the alphabet.
+        # should also decline all keys that don't contain
+        # exactly 1 of each letter of the alphabet.
+
+        # keybox header
+        self.keyboxheader = QLabel("custom key")
+        self.keyboxheader.setStyleSheet(self.textbox_subheaders)
+        self.layout.addWidget(self.keyboxheader)
+
+        # custom key / keybox
+        self.keybox = QTextEdit()
+        self.keybox.setStyleSheet(self.short_box_style)
+        self.layout.addWidget(self.keybox)
+
 
 
     def decryptInterface(self):
@@ -171,7 +192,7 @@ class Cipherer(QWidget):
             textentry = self.entrybox.toPlainText().strip()
             decrypttext = decrypt(testkey, textentry)
             self.outputbox.setPlainText(decrypttext)
-            # print(textentry) # again, no prints in main.
+            #print(textentry) # again, no prints in main.
 
     # used for changing the text of the button 
     def buttonchange(self):
@@ -180,17 +201,23 @@ class Cipherer(QWidget):
         else:
             self.button.setText("Decrypt!")
 
-     # def on_centercheck_toggled(self, checked):
-     #     if checked:
-     #        self.entryheader.setAlignment(Qt.AlignCenter)
-     #        self.outputheader.setAlignment(Qt.AlignCenter)
-     #        print("stuff centered")
-     #     else:
-     #         self.entryheader.setAlignment(Qt.AlignLeft)
-     #         self.outputheader.setAlignment(Qt.AlignLeft)
+    #def on_centercheck_toggled(self, checked):
+    #    if checked:
+    #       self.entryheader.setAlignment(Qt.AlignCenter)
+    #       self.outputheader.setAlignment(Qt.AlignCenter)
+    #       print("stuff centered")
+    #    else:
+    #        self.entryheader.setAlignment(Qt.AlignLeft)
+    #        self.outputheader.setAlignment(Qt.AlignLeft)
 
     def encoderInterface(self):
         global testkey # temporary
+
+        # to create the key from the keybox, what should be done,
+        # is a loop that "zips" two lists together by the letter:
+        # an alphabet, and the user inputted key string.
+
+
 
         if not self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
@@ -198,7 +225,7 @@ class Cipherer(QWidget):
 
             self.outputbox.setPlainText(encodedtext)
 
-    # shortcut to press enter to submit
+    # keyboard shortcut to press enter to submit
     
     def eventFilter(self, obj, event):
         if obj is self.entrybox and event.type() == QEvent.Type.KeyPress:
