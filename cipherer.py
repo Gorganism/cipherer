@@ -33,19 +33,24 @@ def encode(key, entry, patristocrat):
     return result.strip()
 
 
-def decrypt(key,encrypted): # TODO change name of epic variable
-    result=[]
-    encrypted=encrypted.upper()
-    encrypted=list(encrypted)
-    for i in range(len(encrypted)):
-        p=-1
-        epic="hi"
-        while epic != encrypted[i]:
-            p+=1
-            epic=key[p][1]
-            if encrypted[i]==" ":
-                result.append(" ")
-                break
+def decrypt(key, entry):
+    result = []
+    
+    dictKey = dict(key)
+    #reverse dictionary
+    dictKey = {v.lower(): k for k, v in dictKey.items()}
+
+    entry = entry.lower()
+    entry = list(entry)
+    
+    for j in range(len(entry)):
+        if entry[j] in dictKey:
+            result.append(dictKey[entry[j]])
+        else:
+            result.append(entry[j])
+    
+    return ''.join(result)
+
         #if encrypted[i]==" ":
         #    print("added space to the list")
         else:
