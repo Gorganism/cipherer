@@ -17,11 +17,10 @@ dekey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
            ('u','B'), ('v','J'), ('w','E'), ('x','G'), ('y','U'),
            ('z','Q')]
 key=dekey
-def changekey:
+def changekey(keystr):
     key=[]
-    temp = input("Please insert a new key").upper()
     for i in range(26):
-        key.append((f'{dekey[i][0]}', f'{temp[i]}'), )
+        key.append((f'{dekey[i][0]}', f'{keystr[i]}'), )
 
 
 #for i in range(len(key)):
@@ -214,14 +213,20 @@ class Cipherer(QWidget):
     #        self.entryheader.setAlignment(Qt.AlignLeft)
     #        self.outputheader.setAlignment(Qt.AlignLeft)
 
+    def keyboxInterface(self):
+        global dekey
+        key = self.keybox.toPlainText().strip()
+        for i in range(26):
+            key=[]
+            key.append((f'{dekey[i][0]}', f'{key[i]}'), )
+        return key
+
     def encoderInterface(self):
-        global testkey # temporary
+        #global dekey
 
-        # to create the key from the keybox, what should be done,
-        # is a loop that "zips" two lists together by the letter:
-        # an alphabet, and the user inputted key string.
+        #usekey = self.keyboxInterface()
 
-
+        usekey = changekey(self.keybox.toPlainText().strip().upper())
 
         if not self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
@@ -244,8 +249,20 @@ class Cipherer(QWidget):
                     else:
                         self.encoderInterface()
                     return 1
+
+        #if obj is self.keybox and event.type() == QEvent.Type.KeyPress:
+        #    key = event.key()
+        #    modifiers = event.modifiers()
+        #    if key == Qt.Key.Key_Return:
+        #        changekey()
+        #        if modifiers & Qt.ShiftModifier:
+        #            return super().eventFilter(obj, event)
+        #        elif self.keybox.hasFocus():
+        #            return 1
+
             return super().eventFilter(obj, event)
         return super().eventFilter(obj, event)
+
 
 
 if __name__ == "__main__":
