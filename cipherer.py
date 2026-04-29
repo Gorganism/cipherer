@@ -1,5 +1,4 @@
 import random as rand
-#186
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton, QCheckBox
 )
