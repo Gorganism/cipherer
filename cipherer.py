@@ -23,7 +23,7 @@ def changekey(keystr):
     key=[]
     for i in range(26):
         key.append((f'{dekey[i][0]}', f'{keystr[i]}'), )
-        return key
+    return key
 
 
 #for i in range(len(key)):
@@ -225,12 +225,13 @@ class Cipherer(QWidget):
         return key
 
     def encoderInterface(self):
+        global key
         #global dekey
 
         #usekey = self.keyboxInterface()
 
         usekey = changekey(self.keybox.toPlainText().strip().upper())
-        print(usekey)
+        key = usekey
 
         if not self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
