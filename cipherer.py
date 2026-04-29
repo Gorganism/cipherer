@@ -10,11 +10,11 @@ import sys
 
 # temporary key for testing. it's SUPPOSED to be uppercase. do not edit!
 dekey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
-           ('f','N'), ('g','V'), ('h','W'), ('i','Z'), ('j','Y'),
-           ('k','S'), ('l','K'), ('m','R'), ('n','P'), ('o','M'),
-           ('p','O'), ('q','D'), ('r','I'), ('s','X'), ('t','F'),
-           ('u','B'), ('v','J'), ('w','E'), ('x','G'), ('y','U'),
-           ('z','Q')]
+         ('f','N'), ('g','V'), ('h','W'), ('i','Z'), ('j','Y'),
+         ('k','S'), ('l','K'), ('m','R'), ('n','P'), ('o','M'),
+         ('p','O'), ('q','D'), ('r','I'), ('s','X'), ('t','F'),
+         ('u','B'), ('v','J'), ('w','E'), ('x','G'), ('y','U'),
+         ('z','Q')]
 key=dekey
 def changekey(keystr):
     key=[]
