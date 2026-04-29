@@ -15,11 +15,15 @@ dekey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
          ('p','O'), ('q','D'), ('r','I'), ('s','X'), ('t','F'),
          ('u','B'), ('v','J'), ('w','E'), ('x','G'), ('y','U'),
          ('z','Q')]
+
+
 key=dekey
+
 def changekey(keystr):
     key=[]
     for i in range(26):
         key.append((f'{dekey[i][0]}', f'{keystr[i]}'), )
+        return key
 
 
 #for i in range(len(key)):
@@ -226,6 +230,7 @@ class Cipherer(QWidget):
         #usekey = self.keyboxInterface()
 
         usekey = changekey(self.keybox.toPlainText().strip().upper())
+        print(usekey)
 
         if not self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
