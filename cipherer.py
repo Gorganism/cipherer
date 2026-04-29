@@ -51,25 +51,6 @@ def decrypt(key, entry):
     
     return ''.join(result)
 
-        #if encrypted[i]==" ":
-        #    print("added space to the list")
-        else:
-            result.append(key[p][0])
-    return("".join(result))
-
-# TODO - finish backend and allat
-
-
-# gorg's version of the decoder tool:
-
-#def decode(key, entry, patristocrat):
-#    result = entry
-#    for (i,j) in key:
-#       result = result.replace(j.lower(),i.upper())
-#    result = result.lower()
-#    if patristocrat:
-#        result = result.replace(" ","")
-#    return result
 
 
 # --- TESTING ---
