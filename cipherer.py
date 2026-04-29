@@ -1,4 +1,5 @@
 import random as rand
+#186
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit, QPushButton, QCheckBox
 )
@@ -9,13 +10,30 @@ import sys
 # --- BACKEND STUFFS ---
 
 # temporary key for testing. it's SUPPOSED to be uppercase. do not edit!
-testkey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
+dekey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
            ('f','N'), ('g','V'), ('h','W'), ('i','Z'), ('j','Y'),
            ('k','S'), ('l','K'), ('m','R'), ('n','P'), ('o','M'),
            ('p','O'), ('q','D'), ('r','I'), ('s','X'), ('t','F'),
            ('u','B'), ('v','J'), ('w','E'), ('x','G'), ('y','U'),
            ('z','Q')]
-key=testkey
+key=dekey
+def changekey:
+    key=[]
+    temp = input("Please insert a new key").upper()
+    for i in range(26):
+        key.append((f'{dekey[i][0]}', f'{temp[i]}'), )
+
+
+#for i in range(len(key)):
+#    key[i]=f"['{dekey[i][0]}', '{key[i][0]}']"
+
+
+print(key)
+print()
+print(dekey)
+
+#print(dekey)
+#print(key)
 
 def spacer(h, p): # adds a space at a location in a string. this exists solely for legibility.
     return h[:p] + " " + h[p:]
@@ -176,7 +194,7 @@ class Cipherer(QWidget):
     def decryptInterface(self):
         if self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
-            decrypttext = decrypt(testkey, textentry)
+            decrypttext = decrypt(key, textentry)
             self.outputbox.setPlainText(decrypttext)
             #print(textentry) # again, no prints in main.
 
@@ -207,7 +225,7 @@ class Cipherer(QWidget):
 
         if not self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
-            encodedtext = encode(testkey,textentry, self.patcheck.isChecked())
+            encodedtext = encode(key,textentry, self.patcheck.isChecked())
 
             self.outputbox.setPlainText(encodedtext)
 
