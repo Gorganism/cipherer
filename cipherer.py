@@ -30,12 +30,8 @@ def changekey(keystr):
 #    key[i]=f"['{dekey[i][0]}', '{key[i][0]}']"
 
 
-print(key)
-print()
-print(dekey)
-
-#print(dekey)
 #print(key)
+#print(dekey)
 
 def spacer(h, p): # adds a space at a location in a string. this exists solely for legibility.
     return h[:p] + " " + h[p:]
@@ -75,14 +71,7 @@ def decrypt(key, entry):
 
 # --- TESTING ---
 
-#patr_toggle = 0 # patristocrat toggle; change to a toggle in the GUI later
-
-#print(encode(testkey,input("Phrase to encode: "),patr_toggle)) # encoder call
-
-#print(decode(testkey,input("Phrase to decode: "),patr_toggle)) # gorg decoder call
-
 #alphabet = set('abcdefghijklmnopqrstuvwxyz')
-#userkey = input("Please input your key: ") # in the GUI later, note that the case is not preserved.
 #while not (len(userkey) == 26 and alphabet.issubset(key)):
 #    userkey = input("The key was the wrong length or it was missing characters please input a new key: ")
 
