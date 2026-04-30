@@ -8,7 +8,7 @@ import sys
 
 # --- BACKEND STUFFS ---
 
-# temporary key for testing. it's SUPPOSED to be uppercase. do not edit!
+# default key. it's SUPPOSED to be uppercase. do not edit!
 dekey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
          ('f','N'), ('g','V'), ('h','W'), ('i','Z'), ('j','Y'),
          ('k','S'), ('l','K'), ('m','R'), ('n','P'), ('o','M'),
