@@ -192,9 +192,9 @@ class Cipherer(QWidget):
     # used for changing the text of the button 
     def buttonchange(self):
         if not self.decryptcheck.isChecked():
-            self.button.setText("Encrypt!")
+            self.button.setText("Encode!")
         else:
-            self.button.setText("Decrypt!")
+            self.button.setText("Decode!")
 
     #def on_centercheck_toggled(self, checked):
     #    if checked:
