@@ -224,7 +224,7 @@ class Cipherer(QWidget):
 
         if not self.decryptcheck.isChecked():
             textentry = self.entrybox.toPlainText().strip()
-            encodedtext = encode(key,textentry, self.patcheck.isChecked())
+            encodedtext = encode(key, textentry, self.patcheck.isChecked())
 
             self.outputbox.setPlainText(encodedtext)
 
