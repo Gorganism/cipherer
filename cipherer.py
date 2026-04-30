@@ -17,7 +17,7 @@ dekey = [('a','C'), ('b','L'), ('c','T'), ('d','H'), ('e','A'),
          ('z','Q')]
 
 
-key=dekey
+key = dekey
 
 def changekey(keystr):
     key=[]
