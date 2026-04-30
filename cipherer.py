@@ -179,6 +179,7 @@ class Cipherer(QWidget):
         self.keybox = QTextEdit()
         self.keybox.setStyleSheet(self.short_box_style)
         self.layout.addWidget(self.keybox)
+        self.keybox.setPlainText("clthanvwzyskrpmodixfbjeguq") # default
 
 
 
@@ -187,7 +188,6 @@ class Cipherer(QWidget):
             textentry = self.entrybox.toPlainText().strip()
             decrypttext = decrypt(key, textentry)
             self.outputbox.setPlainText(decrypttext)
-            #print(textentry) # again, no prints in main.
 
     # used for changing the text of the button 
     def buttonchange(self):
